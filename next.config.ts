@@ -1,11 +1,4 @@
-
-
 const nextConfig = {
-  devIndicators: {
-    appIsrStatus: false,
-    buildActivity: false,
-    autoPrerender: false,
-  },
   images: {
     domains: ['ui-avatars.com'],
   },
