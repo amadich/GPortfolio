@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import FancyButton from "@/components/FancyButton";
-import ImageContact from "@/assets/images/pexels-googledeepmind-17486100.jpg";
+import ImageContact from "@/assets/images/pexels-elijah-pilchard-269100825-12792328.jpg";
 import Image from "next/image";
 
 export default function HeroContact() {
@@ -34,9 +34,9 @@ export default function HeroContact() {
       <div className="relative z-[1] flex flex-col items-center justify-center h-full text-center text-white px-6">
         <h1
           ref={titleRef}
-          className=" relative z-[1] text-4xl md:text-6xl font-extrabold tracking-wide"
+          className=" relative z-[1] text-4xl md:text-6xl font-extrabold tracking-wide uppercase"
         >
-         Let's talk about your next project
+         Let's talk about your <br /> next project
         </h1>
         <p
           ref={sloganRef}

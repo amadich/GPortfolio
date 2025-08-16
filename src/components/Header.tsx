@@ -121,7 +121,7 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 w-full z-[2] bg-transparent backdrop-blur-md text-white"
+      className="fixed top-0 left-0 w-full z-[50] bg-transparent backdrop-blur-md text-white"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between py-3 px-6">
         {/* Logo */}
@@ -205,18 +205,18 @@ export default function Header() {
               id="companyMenu"
               ref={(el) => setDropdownRef("companyMenu", el)}
               className="absolute left-0 mt-2 w-56 bg-transparent backdrop-blur-xl text-white rounded-xl shadow-2xl p-3 space-y-2 opacity-0 hidden border border-white/10 z-50"
-              style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" }}
+              style={ scrolled ? { background: "white", color: "black" , boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } : { boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } }
               onMouseEnter={() => handleDropdownEnter("companyMenu")}
               onMouseLeave={() => handleLeave("companyMenu")}
             >
               <Link 
-                href="#about" 
+                href="/About" 
                 className="block hover:bg-pink-400/10 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">About Us</span>
                 <p className="text-sm text-gray-300 mt-1">Our story and values</p>
               </Link>
-              <Link 
+              {/* <Link 
                 href="#team" 
                 className="block hover:bg-pink-400/10 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
@@ -226,10 +226,11 @@ export default function Header() {
               <Link 
                 href="#careers" 
                 className="block bg-[#000] hover:bg-pink-950 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Careers</span>
                 <p className="text-sm text-gray-300 mt-1">Join our team</p>
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -253,12 +254,12 @@ export default function Header() {
               id="aboutUsMenu"
               ref={(el) => setDropdownRef("aboutUsMenu", el)}
               className="absolute left-0 mt-2 w-56 bg-transparent backdrop-blur-xl text-white rounded-xl shadow-2xl p-3 space-y-2 opacity-0 hidden border border-white/10 z-50"
-              style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" }}
+              style={ scrolled ? { background: "white", color: "black" , boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } : { boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } }
               onMouseEnter={() => handleDropdownEnter("aboutUsMenu")}
               onMouseLeave={() => handleLeave("aboutUsMenu")}
             >
               <Link 
-                href="#summary" 
+                href="/Aboutus/Summary" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Summary</span>
@@ -270,14 +271,16 @@ export default function Header() {
                 <span className="font-medium">Our Brand Story</span>
               </Link>
               <Link 
-                href="#values" 
+                href="/Aboutus/Summary#Aboutusvalues" 
                 className="block bg-black hover:bg-pink-950 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Our Values</span>
               </Link>
               <Link 
-                href="#clients" 
+                href="/Aboutus/Summary#Aboutusclients" 
                 className="block bg-black hover:bg-pink-950 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Our Clients</span>
               </Link>
@@ -309,43 +312,43 @@ export default function Header() {
               onMouseLeave={() => handleLeave("whatWeDoMenu")}
             >
               <Link 
-                href="#360Campaign" 
+                href="/what-we-do/360-campaign" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">360 Campaign</span>
               </Link>
               <Link 
-                href="#socialMedia" 
+                href="/what-we-do/SocialMediaManagement" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Social Media Management</span>
               </Link>
               <Link 
-                href="#contentWriting" 
+                href="/what-we-do/ContentWriting" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Content Writing & Copywriting</span>
               </Link>
               <Link 
-                href="#branding" 
+                href="/what-we-do/BrandingVisualIdentity" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Branding & Visual Identity</span>
               </Link>
               <Link 
-                href="#strategy" 
+                href="/what-we-do/StrategyAnalytics" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Strategy & Analytics</span>
               </Link>
               <Link 
-                href="#videoProduction" 
+                href="/what-we-do/VideoProduction" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Video Production</span>
               </Link>
               <Link 
-                href="#paidAds" 
+                href="/what-we-do/PaidAdsPerformance" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Paid Ads & Performance</span>
@@ -373,49 +376,54 @@ export default function Header() {
               id="solutionsMenu"
               ref={(el) => setDropdownRef("solutionsMenu", el)}
               className="absolute left-0 mt-2 w-56 bg-transparent backdrop-blur-xl text-white rounded-xl shadow-2xl p-3 space-y-2 opacity-0 hidden border border-white/10 z-[3]"
-              style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" }}
+              style={ scrolled ? { background: "white", color: "black" , boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } : { boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" } }
               onMouseEnter={() => handleDropdownEnter("solutionsMenu")}
               onMouseLeave={() => handleLeave("solutionsMenu")}
             >
               <Link 
-                href="#brandRevolution" 
+                href="/Solutions#brand-revolution" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Brand Revolution</span>
               </Link>
               <Link 
-                href="#brandCreation" 
+                href="/Solutions#brand-creation" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Brand Creation</span>
               </Link>
               <Link 
-                href="#brandElevation" 
+                href="/Solutions#brand-elevation" 
                 className="block bg-black hover:bg-pink-900 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Brand Elevation</span>
               </Link>
               <Link 
-                href="#brandBoost" 
+                href="/Solutions#brand-boost" 
                 className="block bg-black hover:bg-pink-900 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Brand Boost</span>
               </Link>
               <Link 
-                href="#brandCulture" 
+                href="/Solutions#brand-culture-core" 
                 className="block bg-black hover:bg-pink-900 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Brand Culture Core</span>
               </Link>
               <Link 
-                href="#customSolutions" 
+                href="/Solutions#custom-tailored" 
                 className="block bg-black hover:bg-pink-900 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400 z-[+999]"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Custom Tailored Solutions</span>
               </Link>
               <Link 
-                href="#sprintSolutions" 
+                href="/Solutions#sprint-solutions" 
                 className="block bg-black hover:bg-pink-900 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
+                style={ scrolled ? { background: "white", color: "black" } : {} }
               >
                 <span className="font-medium">Sprint Solutions</span>
               </Link>
@@ -423,12 +431,12 @@ export default function Header() {
           </div>
 
           {/* Contact Us */}
-          <Link href="/Contact" className="flex items-center py-2 hover:text-pink-400 transition-colors font-medium">
+          <Link href="/Contact" className="flex items-center py-2 hover:text-yellow-400 transition-colors font-medium">
             Contact Us
           </Link>
 
           {/* Follow Us */}
-          <Link href="#followUs" className="flex items-center py-2 hover:text-pink-400 transition-colors font-medium">
+          <Link href="#followUs" className="flex items-center py-2 hover:text-yellow-400 transition-colors font-medium">
             Follow Us
           </Link>
         </nav>
