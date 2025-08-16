@@ -59,7 +59,7 @@ export default function OverviewSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 ref={titleRef} className="text-3xl md:text-4xl font-bold mb-4">
-            About <span className="text-purple-500">MACROM</span>
+            About <span className="text-pink-500">MACROM</span>
           </h2>
         </div>
 
@@ -78,7 +78,7 @@ export default function OverviewSection() {
           </div>
           
           <div ref={statsRef} className="md:w-1/3">
-            <div className="bg-purple-100 border-2 border-none rounded-xl p-8 shadow-lg">
+            <div className="bg-pink-100 border-2 border-none rounded-xl p-8 shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-center text-black">By The Numbers</h3>
               
               <div className="space-y-6">

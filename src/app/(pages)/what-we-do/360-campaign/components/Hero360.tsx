@@ -69,9 +69,9 @@ export default function Hero360() {
         </p>
         
         <div ref={buttonRef} className="inline-block">
-          <button className="px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full text-lg hover:bg-yellow-400 transition-colors">
+          {/* <button className="px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full text-lg hover:bg-yellow-400 transition-colors">
             Launch Your Campaign
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

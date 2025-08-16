@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 export default function CTASection() {
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -35,13 +36,16 @@ export default function CTASection() {
           </p>
           
           <div className="space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="px-8 py-4 bg-pink-500 text-gray-50 font-bold rounded-full hover:bg-pink-400 transition-colors">
-              Start Your Campaign
-            </button>
-            
-            <button className="px-8 py-4 bg-transparent border-2 border-pink-500 text-pink-500 font-bold rounded-full hover:bg-pink-500 hover:text-gray-200 transition-colors">
-              Request Strategy Session
-            </button>
+            <Link href="/Contact">
+              <button className="px-8 py-4 bg-pink-500 text-gray-50 font-bold rounded-full hover:bg-pink-400 transition-colors">
+                Start Your Campaign
+              </button>
+            </Link>
+            <Link href="/Contact">
+              <button className="px-8 py-4 bg-transparent border-2 border-pink-500 text-pink-500 font-bold rounded-full hover:bg-pink-500 hover:text-gray-200 transition-colors">
+                Request Strategy Session
+              </button>
+            </Link>
           </div>
         </div>
       </div>

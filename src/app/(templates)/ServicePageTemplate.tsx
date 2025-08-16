@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import LoadingShow from "@/components/LoadingShowLeft";
 import Footer from "@/components/Footer";
 import { FiChevronDown } from "react-icons/fi";
@@ -9,7 +10,7 @@ import Image from "next/image";
 import ButtonOnClickFancy from "@/components/ButtonOnClickFancy";
 import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger , ScrollToPlugin);
 
 interface ServicePageProps {
   title: string;
@@ -109,13 +110,14 @@ export default function ServicePageTemplate({
 
   const scrollToContent = () => {
     if (contentRefs.current[0]) {
-      gsap.to(window, {
-        scrollTo: contentRefs.current[0],
+        gsap.to(window, {
+        scrollTo: { y: contentRefs.current[0], offsetY: 50 },
         duration: 1.8,
         ease: "power2.inOut"
-      });
+        });
     }
-  };
+    };
+
 
   return (
     <main className="relative">

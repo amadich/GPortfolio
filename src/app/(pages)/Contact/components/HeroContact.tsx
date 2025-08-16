@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import FancyButton from "@/components/FancyButton";
 import ImageContact from "@/assets/images/pexels-elijah-pilchard-269100825-12792328.jpg";
 import Image from "next/image";
 
@@ -46,7 +45,7 @@ export default function HeroContact() {
           connect with audiences.
         </p>
         <div ref={buttonRef} className="mt-8">
-          <FancyButton text="Discover Our Work" />
+          {/* <FancyButton text="Discover Our Work" /> */}
         </div>
       </div>
     </section>

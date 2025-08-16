@@ -5,66 +5,79 @@ import gsap from "gsap";
 import LogoHeader from "@/assets/Logos/macrom-high-resolution-logo-transparent.png";
 import LogoHeaderDark from "@/assets/Logos/macrom-high-resolution-logo-grayscale-transparent.png";
 import Image from "next/image";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp, FiMenu } from "react-icons/fi";
 import FancyButtonHeader from "./FancyButtonHeader";
 import FancyButtonHeaderDark from "./FancyButtonHeaderDark";
+import BurgerMenu from "./BurgerMenuHeader";
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const leaveTimers = useRef<Record<string, NodeJS.Timeout>>({});
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  // Animation on mount
+  // Animation on mount and scroll handling
   useEffect(() => {
-  if (headerRef.current) {
-    gsap.fromTo(
-      headerRef.current,
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-    );
-  }
-
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    if (scrollTop > 50 && !scrolled) {
-      setScrolled(true);
-      gsap.to(headerRef.current, {
-        backgroundColor: "#ffffff",
-        color: "#000000",
-        duration: 0.5,
-        ease: "power2.out",
-      });
-    } else if (scrollTop <= 50 && scrolled) {
-      setScrolled(false);
-      gsap.to(headerRef.current, {
-        backgroundColor: "transparent",
-        color: "#ffffff",
-        duration: 0.5,
-        ease: "power2.out",
-      });
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+      );
     }
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 50 && !scrolled) {
+        setScrolled(true);
+        gsap.to(headerRef.current, {
+          backgroundColor: "#ffffff",
+          color: "#000000",
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      } else if (scrollTop <= 50 && scrolled) {
+        setScrolled(false);
+        gsap.to(headerRef.current, {
+          backgroundColor: "transparent",
+          color: "#ffffff",
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      Object.values(leaveTimers.current).forEach(timer => clearTimeout(timer));
+    };
+  }, [scrolled]);
+
+  // Close mobile menu on desktop resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  window.addEventListener("scroll", handleScroll);
-
-  // ✅ single cleanup
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    Object.values(leaveTimers.current).forEach(timer => clearTimeout(timer));
-  };
-}, [scrolled]);
-
-
-  // Handle entering a menu item
+  // Handle entering a menu item (desktop)
   const handleEnter = (menu: string) => {
-    // Clear all pending leave animations
     Object.values(leaveTimers.current).forEach(timer => clearTimeout(timer));
     leaveTimers.current = {};
 
-    // Close currently active menu if different from new one
     if (activeMenu && activeMenu !== menu) {
       gsap.to(`#${activeMenu}`, {
         opacity: 0,
@@ -87,7 +100,7 @@ export default function Header() {
     });
   };
 
-  // Handle leaving a menu item
+  // Handle leaving a menu item (desktop)
   const handleLeave = (menu: string) => {
     leaveTimers.current[menu] = setTimeout(() => {
       setActiveMenu(prev => (prev === menu ? null : prev));
@@ -101,10 +114,10 @@ export default function Header() {
         },
       });
       delete leaveTimers.current[menu];
-    }, 150); // Short delay for better UX
+    }, 150);
   };
 
-  // Handle entering a dropdown
+  // Handle entering a dropdown (desktop)
   const handleDropdownEnter = (menu: string) => {
     if (leaveTimers.current[menu]) {
       clearTimeout(leaveTimers.current[menu]);
@@ -113,7 +126,7 @@ export default function Header() {
     setActiveMenu(menu);
   };
 
-  // Set ref for dropdown element
+  // Set ref for dropdown element (desktop)
   const setDropdownRef = (menu: string, el: HTMLDivElement | null) => {
     dropdownRefs.current[menu] = el;
   };
@@ -135,56 +148,8 @@ export default function Header() {
           />
         </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex space-x-8 relative z-50">
-          {/* Services Dropdown */}
-          {/* <div
-            className="relative z-99"
-            onMouseEnter={() => handleEnter("servicesMenu")}
-            onMouseLeave={() => handleLeave("servicesMenu")}
-          >
-            <div className="flex items-center gap-1 cursor-pointer group py-2">
-              <span className="group-hover:text-yellow-400 transition-colors font-medium">
-                Services
-              </span>
-              {activeMenu === "servicesMenu" ? (
-                <FiChevronUp className="text-yellow-400 transition-transform" />
-              ) : (
-                <FiChevronDown className="group-hover:text-yellow-400 transition-colors" />
-              )}
-            </div>
-            <div
-              id="servicesMenu"
-              ref={(el) => setDropdownRef("servicesMenu", el)}
-              className="absolute left-0 mt-2 w-56 bg-transparent backdrop-blur-xl text-white rounded-xl shadow-2xl p-3 space-y-2 opacity-0 hidden border border-white/10 z-50"
-              style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" }}
-              onMouseEnter={() => handleDropdownEnter("servicesMenu")}
-              onMouseLeave={() => handleLeave("servicesMenu")}
-            >
-              <Link 
-                href="#web" 
-                className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
-              >
-                <span className="font-medium">Web Development</span>
-                <p className="text-sm text-gray-300 mt-1">Modern, responsive websites</p>
-              </Link>
-              <Link 
-                href="#design" 
-                className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
-              >
-                <span className="font-medium">UI/UX Design</span>
-                <p className="text-sm text-gray-300 mt-1">User-centered interfaces</p>
-              </Link>
-              <Link 
-                href="#seo" 
-                className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
-              >
-                <span className="font-medium">SEO Optimization</span>
-                <p className="text-sm text-gray-300 mt-1">Increase your visibility</p>
-              </Link>
-            </div>
-          </div> */}
-
+        {/* Desktop Navigation - Hidden on mobile */}
+        <nav className="hidden lg:flex space-x-8 relative z-50">
           {/* Company Dropdown */}
           <div
             className="relative"
@@ -216,21 +181,6 @@ export default function Header() {
                 <span className="font-medium">About Us</span>
                 <p className="text-sm text-gray-300 mt-1">Our story and values</p>
               </Link>
-              {/* <Link 
-                href="#team" 
-                className="block hover:bg-pink-400/10 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
-              >
-                <span className="font-medium">Our Team</span>
-                <p className="text-sm text-gray-300 mt-1">Meet the experts</p>
-              </Link>
-              <Link 
-                href="#careers" 
-                className="block bg-[#000] hover:bg-pink-950 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
-                style={ scrolled ? { background: "white", color: "black" } : {} }
-              >
-                <span className="font-medium">Careers</span>
-                <p className="text-sm text-gray-300 mt-1">Join our team</p>
-              </Link> */}
             </div>
           </div>
 
@@ -264,12 +214,12 @@ export default function Header() {
               >
                 <span className="font-medium">Summary</span>
               </Link>
-              <Link 
+              {/* <Link 
                 href="#brandStory" 
                 className="block hover:bg-transparent p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
               >
                 <span className="font-medium">Our Brand Story</span>
-              </Link>
+              </Link> */}
               <Link 
                 href="/Aboutus/Summary#Aboutusvalues" 
                 className="block bg-black hover:bg-pink-950 p-3 rounded-lg transition-all hover:translate-x-1 border-b-2 border-transparent hover:border-pink-400"
@@ -429,23 +379,41 @@ export default function Header() {
               </Link>
             </div>
           </div>
-
+          
           {/* Contact Us */}
           <Link href="/Contact" className="flex items-center py-2 hover:text-yellow-400 transition-colors font-medium">
             Contact Us
           </Link>
 
           {/* Follow Us */}
-          <Link href="#followUs" className="flex items-center py-2 hover:text-yellow-400 transition-colors font-medium">
+          <Link href="/Followus" className="flex items-center py-2 hover:text-yellow-400 transition-colors font-medium">
             Follow Us
           </Link>
         </nav>
         
-        {/* CTA Button */}
-        <div>
-          {scrolled ? (<FancyButtonHeaderDark text="See My Work" />) : (<FancyButtonHeader text="See My Work" />)}
+        {/* CTA Button - Hidden on mobile */}
+        <div className="hidden lg:block">
+          <Link href="/Aboutus/Summary">  
+            {scrolled ? (<FancyButtonHeaderDark text="See My Work" />) : (<FancyButtonHeader text="See My Work" />)}
+          </Link>
         </div>
+
+        {/* Mobile Menu Button - Visible only on mobile */}
+        <button 
+          className="lg:hidden text-2xl z-50"
+          onClick={toggleMobileMenu}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+        >
+          <FiMenu />
+        </button>
       </div>
+
+      {/* Burger Menu Component */}
+      <BurgerMenu 
+        isOpen={isMobileMenuOpen} 
+        closeMenu={() => setIsMobileMenuOpen(false)} 
+        scrolled={scrolled} 
+      />
     </header>
   );
 }

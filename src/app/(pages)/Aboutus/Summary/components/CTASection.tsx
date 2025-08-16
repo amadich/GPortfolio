@@ -47,7 +47,7 @@ export default function CTASection() {
         
         <div ref={buttonRef} className="space-y-4 sm:space-y-0 sm:space-x-4">
          
-         <Link href={"/"}>
+         <Link href={"/Contact"}>
            <button className="px-8 py-4 bg-black text-white font-bold rounded-full hover:bg-transparent hover:text-black hover:border-1 transition-colors">
             Get Started
           </button>

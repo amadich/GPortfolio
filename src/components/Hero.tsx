@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import FancyButton from "@/components/FancyButton";
+import Link from "next/link";
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -47,7 +48,9 @@ export default function Hero() {
           connect with audiences.
         </p>
         <div ref={buttonRef} className="mt-8">
-          <FancyButton text="Discover Our Work" />
+          <Link href="/Aboutus/Summary">
+            <FancyButton text="Discover Our Work" />
+          </Link>
         </div>
       </div>
     </section>

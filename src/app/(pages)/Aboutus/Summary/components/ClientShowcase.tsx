@@ -67,7 +67,7 @@ export default function ClientShowcase() {
           </p>
         </div>
 
-        <div className="flex  grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-center justify-items-center">
+        <div className="md:flex  grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-center justify-items-center">
 
           {clients.map((client, index) => (
             <div 

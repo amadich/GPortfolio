@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BtnSumm from "./btnSumm";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -173,7 +174,9 @@ export default function SolutionsHighlight() {
 						{/* <button className="mt-8 px-6 py-3 bg-black text-black font-bold rounded-full hover:bg-yellow-400 transition-colors">
 							Learn More
 						</button> */}
-						<BtnSumm text="Learn More" />
+						<Link href={"/Solutions"}>
+							<BtnSumm text="Learn More" />
+						</Link>
 					</div>
 				</div>
 			</div>
