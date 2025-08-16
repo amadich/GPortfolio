@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="footer sm:footer-horizontal bg-black text-base-content p-10">
+        <footer className="footer sm:footer-horizontal bg-black text-white p-10">
             <aside>
                 <Image src={LogoCompany} width={100} alt="Company Logo" className="mb-4" />
                 <p>
