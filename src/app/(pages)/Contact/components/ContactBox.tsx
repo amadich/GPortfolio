@@ -68,7 +68,7 @@ const ContactBox = () => {
       {/* Left Side */}
       <div className="flex-1">
         <h2 className="text-4xl font-bold text-gray-700 mb-4">Start the conversation</h2>
-        <p className="text-gray-600 text-xl w-96">
+        <p className="text-gray-600 text-xl md:w-96">
           If none of the quick links above apply to you, please fill out the form. We'll be in touch.
         </p>
       </div>
