@@ -77,7 +77,7 @@ export default function ClientShowcase() {
               className="bg-gray-100 p-6 sm:p-8 rounded-xl flex flex-col items-center justify-center w-full max-w-xs"
             >
               {client.logo ? (
-                <Image src={client.logo} alt={client.name} width={96} height={96} className="mb-4 object-contain rounded-sm" />
+                <Image src={client.logo} alt={client.name} width={96} height={96} draggable={false} className="mb-4 object-contain rounded-sm" />
               ) : (
                 <div className="bg-gray-300 rounded-full w-14 h-14 flex items-center justify-center mb-4">
                   <span className="text-xl font-bold text-black">{index + 1}</span>
