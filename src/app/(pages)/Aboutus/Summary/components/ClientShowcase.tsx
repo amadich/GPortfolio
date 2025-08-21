@@ -67,22 +67,23 @@ export default function ClientShowcase() {
           </p>
         </div>
 
-        <div className="md:flex  grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-center justify-items-center">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:flex gap-6 sm:gap-8 justify-center flex-wrap">
+
 
           {clients.map((client, index) => (
             <div 
               key={index}
               ref={el => { logosRef.current[index] = el; }}
-              className="bg-gray-100 p-8 rounded-xl flex flex-col items-center justify-center aspect-square"
+              className="bg-gray-100 p-6 sm:p-8 rounded-xl flex flex-col items-center justify-center w-full max-w-xs"
             >
               {client.logo ? (
-                <Image src={client.logo} alt={client.name} className="w-24 h-24 mb-4" />
+                <Image src={client.logo} alt={client.name} width={96} height={96} className="mb-4 object-contain" />
               ) : (
-                <div className="bg-gray-300 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                  <span className="text-2xl font-bold text-black">{index + 1}</span>
+                <div className="bg-gray-300 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                  <span className="text-xl font-bold text-black">{index + 1}</span>
                 </div>
               )}
-              <h3 className="text-lg font-bold text-center text-black">{client.name}</h3>
+              <h3 className="text-base sm:text-lg font-bold text-center text-black break-words">{client.name}</h3>
               <p className="text-gray-800 text-sm">{client.industry}</p>
             </div>
           ))}

@@ -86,7 +86,7 @@ export default function BurgerMenuHeader({ isOpen, closeMenu, scrolled }: Burger
         {/* Menu Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {/* Company Dropdown */}
-          <div className="border-b border-gray-200 pb-4">
+          {/* <div className="border-b border-gray-200 pb-4">
             <div 
               className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleDropdown("companyMenu")}
@@ -104,7 +104,7 @@ export default function BurgerMenuHeader({ isOpen, closeMenu, scrolled }: Burger
                 </Link>
               </div>
             )}
-          </div>
+          </div> */}
           
           {/* About Us Dropdown */}
           <div className="border-b border-gray-200 pb-4">

@@ -151,7 +151,7 @@ export default function Header() {
         {/* Desktop Navigation - Hidden on mobile */}
         <nav className="hidden lg:flex space-x-8 relative z-50">
           {/* Company Dropdown */}
-          <div
+          {/* <div
             className="relative"
             onMouseEnter={() => handleEnter("companyMenu")}
             onMouseLeave={() => handleLeave("companyMenu")}
@@ -182,7 +182,7 @@ export default function Header() {
                 <p className="text-sm text-gray-300 mt-1">Our story and values</p>
               </Link>
             </div>
-          </div>
+          </div> */}
 
           {/* About Us Dropdown */}
           <div

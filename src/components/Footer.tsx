@@ -8,9 +8,9 @@ export default function Footer() {
             <aside>
                 <Image src={LogoCompany} width={100} alt="Company Logo" className="mb-4" />
                 <p>
-                    MACROM Industries Ltd.
+                    MACROM.
                     <br />
-                    Providing reliable tech since 1992
+                    Providing Reliable Marketing Solutions
                 </p>
             </aside>
             <nav>
@@ -19,7 +19,7 @@ export default function Footer() {
                 <Link href="/Contact" className="link link-hover">Contact Us</Link>
                 <Link href="/Aboutus/Summary#Aboutusclients" className="link link-hover">Our Clients</Link>
                 <Link href="/Aboutus/Summary#Aboutusvalues" className="link link-hover">Our Values</Link>
-                <Link href="#followUs" className="link link-hover">Follow Us</Link>
+                <Link href="/Followus" className="link link-hover">Follow Us</Link>
             </nav>
             <nav>
                 <h6 className="footer-title">What We Do</h6>
@@ -44,7 +44,7 @@ export default function Footer() {
             <nav>
                 <h6 className="footer-title">About Us</h6>
                 <Link href="/Aboutus/Summary" className="link link-hover">Summary</Link>
-                <Link href="#brandStory" className="link link-hover">Our Brand Story</Link>
+                {/* <Link href="#brandStory" className="link link-hover">Our Brand Story</Link> */}
             </nav>
         </footer>
     );
