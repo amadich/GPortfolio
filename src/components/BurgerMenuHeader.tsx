@@ -123,9 +123,9 @@ export default function BurgerMenuHeader({ isOpen, closeMenu, scrolled }: Burger
                 <Link href="/Aboutus/Summary" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-gray-900">
                   Summary
                 </Link>
-                <Link href="#brandStory" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-gray-900">
+                {/* <Link href="#brandStory" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-gray-900">
                   Our Brand Story
-                </Link>
+                </Link> */}
                 <Link href="/Aboutus/Summary#Aboutusvalues" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-gray-900">
                   Our Values
                 </Link>
